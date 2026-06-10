@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  BrowserRouter,
+  HashRouter,
   Navigate,
   Route,
   Routes,
@@ -234,6 +234,8 @@ function PromoSection() {
 }
 
 function ProductList({ products, onAddToCart }) {
+  const navigate = useNavigate();
+
   return (
     <main>
       <PromoSection />
@@ -246,7 +248,7 @@ function ProductList({ products, onAddToCart }) {
               product={product}
               onAddToCart={onAddToCart}
               onView={() => {
-                window.location.href = `/product/${product.id}`;
+                navigate(`/product/${product.id}`);
               }}
             />
           ))}
@@ -1281,7 +1283,7 @@ function App() {
   const homeItems = useMemo(() => products, [products]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route
           path="/"
@@ -1306,7 +1308,7 @@ function App() {
         <Route path="/admin" element={<AdminPage products={products} onProductsChange={setProducts} showToast={showToast} />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
