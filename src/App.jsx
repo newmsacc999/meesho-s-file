@@ -235,6 +235,8 @@ function PromoSection() {
 }
 
 function ProductList({ products, onAddToCart }) {
+  const navigate = useNavigate();
+
   return (
     <main>
       <PromoSection />
