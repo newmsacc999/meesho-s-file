@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  HashRouter,
+  BrowserRouter,
+  Link,
   Navigate,
   Route,
   Routes,
@@ -48,9 +49,9 @@ function Header({ cartCount, onCartOpen }) {
                 <line x1="3" y1="18" x2="21" y2="18" />
               </svg>
             </button>
-            <a href="/" className="brand-logo">
+            <Link to="/" className="brand-logo">
               <Logo />
-            </a>
+            </Link>
           </div>
 
           <div className="header-right">
@@ -369,9 +370,9 @@ function ProductPage({ products, onAddToCart, cartItems, onCartOpen }) {
                 <path d="M13.746 2.314C13.569 2.113 13.328 2 13.077 2c-.252 0-.492.113-.67.314L6.278 9.243a1.076 1.076 0 0 0 0 1.514l6.13 6.929c.37.419.969.419 1.339 0 .37-.419.304-1.17 0-1.514L8.292 10l5.454-6.172c.223-.25.362-1.105 0-1.514Z" fill="#666" />
               </svg>
             </button>
-            <a href="/" className="brand-logo">
+            <Link to="/" className="brand-logo">
               <Logo />
-            </a>
+            </Link>
           </div>
 
           <div className="ph-right">
@@ -1283,7 +1284,7 @@ function App() {
   const homeItems = useMemo(() => products, [products]);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route
           path="/"
@@ -1308,7 +1309,7 @@ function App() {
         <Route path="/admin" element={<AdminPage products={products} onProductsChange={setProducts} showToast={showToast} />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
